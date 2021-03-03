@@ -21,5 +21,5 @@ from core.views import homepage, first_article
 urlpatterns = [
     path('admin/', admin.site.urls),
     path("test/", homepage),
-    path("", first_article, name="first-article-page"),
+    path("article/", first_article, name="first-article-page"),
 ]   

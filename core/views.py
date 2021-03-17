@@ -1,16 +1,26 @@
 from django.shortcuts import render, HttpResponse
-from .models import Article
+from .models import Article, Author
 
-# Create your views here.
-def homepage(request):
-    return render(request, "index.html")
-    # return HttpResponse("<h2>Hello world!</h2>")
-
-
-def first_article(request):
-    article = Article.objects.get(id=1)
+def articles(request):
+    articles = Article.objects.all()
     return render(
         request,
-        "article_page.html", 
-        {"article": article}    
+        "articles.html",
+        {"articles": articles}
+    )
+
+def authors(request):
+    authors = Author.objects.all()
+    return render(
+        request,
+        "authors.html",
+        {"authors": authors}
+    )
+
+def article(request, id):
+    article = Article.objects.get(id=id)
+    return render(
+        request,
+        "article.html",
+        {"article": article}
     )

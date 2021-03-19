@@ -24,3 +24,7 @@ def article(request, id):
         "article.html",
         {"article": article}
     )
+
+
+def about(request):
+    return render(request, "about.html")

@@ -1,4 +1,4 @@
-from django.shortcuts import render, HttpResponse
+from django.shortcuts import render, HttpResponse, redirect
 from .models import Article, Author
 
 def articles(request):
@@ -17,7 +17,7 @@ def authors(request):
         {"authors": authors}
     )
 
-def article(request, id):
+def article_page(request, id):
     article = Article.objects.get(id=id)
     article.views += 1
     article.save()
@@ -30,3 +30,14 @@ def article(request, id):
 
 def about(request):
     return render(request, "about.html")
+
+
+def edit_article(request, pk):
+    article = Article.objects.get(id=pk)
+
+    if request.method == "POST":
+        article.title = request.POST.get("title")
+        article.text = request.POST.get("text")
+        article.save()
+        return redirect(article_page, pk)
+    return render(request, "update.html", {"article": article})

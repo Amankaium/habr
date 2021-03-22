@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <div><a href="{% url 'article' article.pk %}">Назад</a></div>
+    <form method="POST">
+        {% csrf_token %}
+        <input type="text" name="title" value="{{ article.title }}">
+        <br><br>
+        <textarea name="text" cols="30" rows="10">{{ article.text }}</textarea>
+        <br><br>
+        <button>Сохранить изменения</button>
+    </form>
+
+{% endblock %}

@@ -6,5 +6,6 @@
     <p>Просмотры: {{ article.views }}</p>
     <p>Создано: {{ article.created_at }}</p>
     <p>Изменено: {{ article.updated_at }}</p>
+    <a href="{% url 'article-edit' article.id %}">Редактировать</a>
 
 {% endblock %}

@@ -3,4 +3,8 @@
 {% block content %}
     <h1>{{ article.title }}</h1>
     <div>{{ article.text }}</div>
+    <p>Просмотры: {{ article.views }}</p>
+    <p>Создано: {{ article.created_at }}</p>
+    <p>Изменено: {{ article.updated_at }}</p>
+
 {% endblock %}

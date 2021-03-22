@@ -1,7 +1,12 @@
 {% extends 'base.html' %}
+{% load static %}
 
 {% block title %}
     О сайте
+{% endblock %}
+
+{% block extra-script %}
+    <script src="{% static 'myscript.js' %}"></script>
 {% endblock %}
 
 {% block content %}
@@ -16,4 +21,6 @@
         ​две буквы ​алфавита.
     </div>
     {% endblock %}
+
+    <button onclick="redColor">Перекрасить</button>
 {% endblock %}

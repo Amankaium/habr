@@ -19,6 +19,15 @@ class Article(models.Model):
         blank=True,
     )
 
+    views = models.IntegerField(default=0, verbose_name="Просмотры")
+
+    created_at = models.DateTimeField(
+        auto_now_add=True,
+        null=True,
+    )
+    
+    updated_at = models.DateTimeField(auto_now=True)
+
     def __str__(self):
         return self.title
 

@@ -20,6 +20,8 @@
     <a href="{% url 'articles' %}">Статьи</a> |
     <a href="#">Топ 10</a> |
     <a href="{% url 'about' %}">О сайте</a>
+    ----------------------
+    <span>Привет, {{ request.user.username }}!</span>
 
     {% block content %}
     {% endblock %}

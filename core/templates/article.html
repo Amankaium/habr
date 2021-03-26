@@ -6,6 +6,14 @@
     <p>Просмотры: {{ article.views }}</p>
     <p>Создано: {{ article.created_at }}</p>
     <p>Изменено: {{ article.updated_at }}</p>
+    <p>
+        Автор:
+        <ul>
+            <li>Псевдоним - {{ article.author.nik }}</li>
+            <li>Логин - {{ article.author.user.username }}</li>
+        </ul>
+
+    </p>
     <a href="{% url 'article-edit' article.id %}">Редактировать</a>
 
 {% endblock %}

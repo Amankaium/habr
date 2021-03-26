@@ -57,6 +57,14 @@ def add_article(request):
         new_article = Article()
         new_article.title = title
         new_article.text = text
+        user = request.user
+
+        if not Author.objects.filter(user=user).exists():
+            author = Author(user=user, nik=user.username)
+            author.save()
+            
+        author = user.author
+        new_article.author = author
         new_article.save()
         return redirect(article_page, new_article.pk)
 

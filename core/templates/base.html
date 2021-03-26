@@ -19,9 +19,12 @@
     <a href="{% url 'authors' %}">Авторы</a> |
     <a href="{% url 'articles' %}">Статьи</a> |
     <a href="#">Топ 10</a> |
+    <a href="{% url 'article-add' %}">Добавить</a> |
     <a href="{% url 'about' %}">О сайте</a>
     ----------------------
     <span>Привет, {{ request.user.username }}!</span>
+    
+    <hr>
 
     {% block content %}
     {% endblock %}

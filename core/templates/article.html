@@ -15,5 +15,9 @@
 
     </p>
     <a href="{% url 'article-edit' article.id %}">Редактировать</a>
+    <br>
+    <a href="{% url 'article-delete' article.id %}">Удалить</a>
+    <br>
+    <a href="{% url 'article-hide' article.id %}">Скрыть</a>
 
 {% endblock %}

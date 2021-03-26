@@ -2,7 +2,7 @@ from django.shortcuts import render, HttpResponse, redirect
 from .models import Article, Author
 
 def articles(request):
-    articles = Article.objects.all()
+    articles = Article.objects.filter(is_active=True)
     return render(
         request,
         "articles.html",
@@ -68,5 +68,14 @@ def add_article(request):
         new_article.save()
         return redirect(article_page, new_article.pk)
 
-        
 
+def delete_article(request, id):
+    article = Article.objects.get(pk=id)
+    article.delete()
+    return HttpResponse("Статья удалена")
+
+def hide_article(request, id):
+    article = Article.objects.get(id=id)
+    article.is_active = False
+    article.save()
+    return redirect(articles)

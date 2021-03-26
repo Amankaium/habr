@@ -41,3 +41,24 @@ def edit_article(request, pk):
         article.save()
         return redirect(article_page, pk)
     return render(request, "update.html", {"article": article})
+
+
+def add_article(request):
+    if request.method == "GET":
+        return render(request, "add.html")
+    elif request.method == "POST":
+        form = request.POST
+        title = form.get("title")
+        text = form.get("text")
+
+        # new_article = Article(title=title, text=text)
+        # new_article.save()
+
+        new_article = Article()
+        new_article.title = title
+        new_article.text = text
+        new_article.save()
+        return redirect(article_page, new_article.pk)
+
+        
+

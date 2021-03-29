@@ -79,3 +79,13 @@ def hide_article(request, id):
     article.is_active = False
     article.save()
     return redirect(articles)
+
+
+def search(request):
+    # POST GET
+    word = request.GET.get("word")
+    articles = Article.objects.filter(
+        title__contains=word,
+        is_active=True
+    ) # LIKE
+    return render(request, "articles.html", {"articles": articles})

@@ -23,7 +23,11 @@
     <a href="{% url 'about' %}">О сайте</a>
     ----------------------
     <span>Привет, {{ request.user.username }}!</span>
-    
+    <br>
+    <form action="{% url 'search' %}">
+        <input type="text" name="word">
+        <button>Поиск</button>
+    </form>
     <hr>
 
     {% block content %}

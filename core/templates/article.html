@@ -14,6 +14,9 @@
         </ul>
 
     </p>
+    <img src="{{ article.picture.url }}" width="400px">
+    <br>
+    
     <a href="{% url 'article-edit' article.id %}">Редактировать</a>
     <br>
     <a href="{% url 'article-delete' article.id %}">Удалить</a>

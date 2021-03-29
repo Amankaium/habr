@@ -1,4 +1,5 @@
 from django.shortcuts import render, HttpResponse, redirect
+from django.db.models import Q
 from .models import Article, Author
 
 def articles(request):
@@ -85,7 +86,7 @@ def search(request):
     # POST GET
     word = request.GET.get("word")
     articles = Article.objects.filter(
-        title__contains=word,
+        Q(title__icontains=word) | Q(text__icontains=word),
         is_active=True
-    ) # LIKE
+    )
     return render(request, "articles.html", {"articles": articles})

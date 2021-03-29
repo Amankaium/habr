@@ -14,8 +14,10 @@
         </ul>
 
     </p>
-    <img src="{{ article.picture.url }}" width="400px">
-    <br>
+    {% if article.picture %}
+        <img src="{{ article.picture.url }}" width="400px">
+        <br>
+    {% endif %}
     
     <a href="{% url 'article-edit' article.id %}">Редактировать</a>
     <br>

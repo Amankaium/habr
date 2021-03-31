@@ -18,6 +18,10 @@ def authors(request):
         {"authors": authors}
     )
 
+def author_page(request, pk):
+    author = Author.objects.get(pk=pk)
+    return render(request, "author.html", {"author": author})
+
 def article_page(request, id):
     article = Article.objects.get(id=id)
     article.views += 1
@@ -83,10 +87,10 @@ def hide_article(request, id):
 
 
 def search(request):
-    # POST GET
     word = request.GET.get("word")
     articles = Article.objects.filter(
         Q(title__icontains=word) | Q(text__icontains=word),
         is_active=True
     )
     return render(request, "articles.html", {"articles": articles})
+

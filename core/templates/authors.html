@@ -5,7 +5,11 @@
     <h1>Авторы:</h1>
     <ol>
     {% for author in authors %}
-        <li>{{ author.nik }}</li>
+        <a href="{% url 'author' author.id %}">
+            <li>
+                {{ author.nik }}
+            </li>
+        </a>
     {% endfor %}
     </ol>
 {% endblock %}

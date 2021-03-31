@@ -33,7 +33,7 @@ class Article(models.Model):
     picture = models.ImageField(
         upload_to="articles_image",
         null=True, blank=True,
-        verbose_name="Картинка статьи"    
+        verbose_name="Главная картинка статьи"    
     )
 
     def __str__(self):
@@ -60,3 +60,12 @@ class Author(models.Model):
     
     def __str__(self):
         return self.nik
+
+
+class ArticleImage(models.Model):
+    img = models.ImageField(upload_to="articles_image")
+    article = models.ForeignKey(
+        to=Article,
+        on_delete=models.CASCADE,
+        related_name="articles",
+    )

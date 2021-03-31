@@ -20,7 +20,13 @@ def authors(request):
 
 def author_page(request, pk):
     author = Author.objects.get(pk=pk)
-    return render(request, "author.html", {"author": author})
+    context = {
+        "author": author,
+        "user": author.user,
+        # "test": 12312
+    }
+    # context["number"] = 2
+    return render(request, "author.html", context)
 
 def article_page(request, id):
     article = Article.objects.get(id=id)

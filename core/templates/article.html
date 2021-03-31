@@ -18,7 +18,10 @@
         <img src="{{ article.picture.url }}" width="400px">
         <br>
     {% endif %}
-    
+    {% for image in article.images.all %}
+        <img src="{{ image.img.url }}" width="200px">
+    {% endfor %}
+    <hr>
     <a href="{% url 'article-edit' article.id %}">Редактировать</a>
     <br>
     <a href="{% url 'article-delete' article.id %}">Удалить</a>

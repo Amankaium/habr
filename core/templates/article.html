@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
-
+{% load cutmodule %}
 {% block content %}
-    <h1>{{ article.title }}</h1>
+    <h1>{{ article.title|cut_words:"Самый персонаж" }}</h1>
     <div>{{ article.text }}</div>
     <p>Просмотры: {{ article.views }}</p>
     <p>Просмотревшие пользователи {{ article.readers.count }}: 

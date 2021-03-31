@@ -4,6 +4,13 @@
     <h1>{{ article.title }}</h1>
     <div>{{ article.text }}</div>
     <p>Просмотры: {{ article.views }}</p>
+    <p>Просмотревшие пользователи {{ article.readers.count }}: 
+        <ol>
+            {% for u in article.readers.all %}
+                <li>{{ u.username }}</li>
+            {% endfor %}
+        </ol>
+    </p>
     <p>Создано: {{ article.created_at }}</p>
     <p>Изменено: {{ article.updated_at }}</p>
     <p>

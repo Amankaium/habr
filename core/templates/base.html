@@ -56,10 +56,18 @@
         </div>
       </nav>
     
-    <div class='container'>
+    <div class='container-fluid'>
         <br>
-        {% block content %}
-        {% endblock %}
+        <div class="row">
+            <div class="col-1"></div>
+            <div class="col-9">
+                {% block content %}
+                {% endblock %}
+            </div>
+            <div class="col-2">
+                Боковая панель
+            </div>
+        </div>
     </div>
     <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
     <footer>© Все права защищены</footer>

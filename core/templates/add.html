@@ -6,11 +6,20 @@
     <br>
     <form method="POST">
         {% csrf_token %}
-        <input type="text" placeholder="Заголовок статьи" name="title">
-        <br><br>
-        <textarea name="text" cols="30" rows="10" placeholder="Текст статьи"></textarea>
-        <br><br>
-        <button>Добавить</button>
+        <div class="input-group mb-3 input-group-lg">
+            <div class="input-group-prepend">
+                <span class="input-group-text">Заголовок статьи</span>
+            </div>
+            <input type="text" name="title" class="form-control">
+        </div>
+        <div class="input-group input-group-lg">
+            <div class="input-group-prepend">
+                <span class="input-group-text">Текст<br>статьи</span>
+            </div>
+            <textarea class="form-control" rows='7' aria-label="С текстовым полем" name="text"></textarea>
+        </div>
+        <br>
+        <button class="btn btn-secondary btn-block">Добавить</button>
     </form>
 </div>
 

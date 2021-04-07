@@ -11,20 +11,11 @@ class HomepageTestCase(TestCase):
         self.assertEqual(response.status_code, 200)
         self.assertContains(response, 'Хабр')
     
-    def test_homepage_with_articles_success(self):
-        # n = 3
-        # for i in range(n):
-        #     article = Article()
-        #     article.title = f'Test Title {i}'
-        #     article.text = f'Bla bla bla text {i}'
-        #     article.save()
-
-        
-        
+    def test_homepage_with_articles_success(self):        
         n = 3
         for i in range(n):
             article = ArticleFactory()
-            
+
         article.is_active = False
         article.save()
 

@@ -1,6 +1,6 @@
 from django.shortcuts import render, HttpResponse, redirect
 from django.db.models import Q
-from django.contrib.auth import authenticate, login
+from django.contrib.auth import authenticate, login, logout
 from .models import Article, Author
 
 
@@ -15,6 +15,11 @@ def sign_in(request):
                 return redirect('articles')
                 
     return render(request, 'sign_in.html')
+
+
+def sign_out(request):
+    logout(request)
+    return redirect(sign_in)
 
 
 def articles(request):

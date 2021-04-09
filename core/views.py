@@ -1,6 +1,21 @@
 from django.shortcuts import render, HttpResponse, redirect
 from django.db.models import Q
+from django.contrib.auth import authenticate, login
 from .models import Article, Author
+
+
+def sign_in(request):
+    if request.method == 'POST':
+        username = request.POST.get('username')
+        password = request.POST.get('password')
+        user = authenticate(username=username, password=password)
+        if user is not None:
+            if user.is_active:
+                login(request, user)
+                return redirect('articles')
+                
+    return render(request, 'sign_in.html')
+
 
 def articles(request):
     articles = Article.objects.filter(is_active=True)

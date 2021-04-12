@@ -1,18 +1,17 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <h1>Добро пожаловать на Хабр!</h1>
+{% extends 'layout.html' %}
+
+{% block auth %}
     <form method="POST">
         {% csrf_token %}
-        <input type="text" placeholder="Логин" name="username">
-        <input type="password" placeholder="Пароль" name="password">
-        <button>Войти</button>
+        <div class="form-group">
+            <label for="username">Логин:</label>
+            <input type="text" class="form-control" placeholder="Логин" id="username" name="username">
+          </div>
+          <div class="form-group">
+            <label for="pwd">Пароль:</label>
+            <input type="password" class="form-control" placeholder="Пароль" id="pwd" name="password">
+          </div>
+          <button class="btn btn-primary">Войти</button>
     </form>
-</body>
-</html>
+
+{% endblock %}

@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form method="POST">
+        {% csrf_token %}
+        <input type="text" placeholder="Логин" name="username">
+        <input type="password" placeholder="Пароль" name="password_1">
+        <input type="password" placeholder="Подтверждение пароля" name="password_2">
+        <button>Зарегистрироваться</button>
+    </form>
+    {% if message %}
+        <span>{{ message }}</span>
+    {% endif %}
+</body>
+</html>

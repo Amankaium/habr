@@ -4,4 +4,4 @@ __pycache__/
 media
 sqlite3.exe
 static/
-
+habr/settings.py

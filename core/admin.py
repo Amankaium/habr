@@ -16,7 +16,7 @@ class ArticleAdmin(admin.ModelAdmin):
     list_filter = ['is_active', 'updated_at']
     search_fields = ['title', 'text']
 
-    fields = ('title', 'text', 'views', 'created_at', 'updated_at', 'readers')
+    fields = ('title', 'text', 'picture', 'views', 'created_at', 'updated_at', 'readers')
     readonly_fields = ('views', 'created_at', 'updated_at', 'readers')
 
 admin.site.register(Article, ArticleAdmin)

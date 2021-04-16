@@ -4,7 +4,7 @@
 
 <div>
     <br>
-    <form method="POST">
+    <form method="POST" enctype="multipart/form-data">
         {% csrf_token %}
         <div class="input-group mb-3 input-group-lg">
             <div class="input-group-prepend">
@@ -18,6 +18,9 @@
             </div>
             <textarea class="form-control" rows='7' aria-label="С текстовым полем" name="text"></textarea>
         </div>
+        <br>
+        <input type="file" name="picture">
+        <br>
         <br>
         <button class="btn btn-secondary btn-block">Добавить</button>
     </form>

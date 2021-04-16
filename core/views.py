@@ -103,6 +103,7 @@ def add_article(request):
         form = request.POST
         title = form.get("title")
         text = form.get("text")
+        picture = request.FILES.get('picture')
 
         # new_article = Article(title=title, text=text)
         # new_article.save()
@@ -110,6 +111,7 @@ def add_article(request):
         new_article = Article()
         new_article.title = title
         new_article.text = text
+        new_article.picture = picture
         user = request.user
 
         if not Author.objects.filter(user=user).exists():

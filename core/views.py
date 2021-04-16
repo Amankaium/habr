@@ -1,6 +1,7 @@
 from django.shortcuts import render, HttpResponse, redirect
 from django.db.models import Q
 from django.contrib.auth import authenticate, login, logout, get_user_model
+from django.contrib.auth.decorators import login_required
 from .models import Article, Author
 
 
@@ -96,6 +97,7 @@ def edit_article(request, pk):
     return render(request, "update.html", {"article": article})
 
 
+@login_required(login_url='/sign-in/')
 def add_article(request):
     if request.method == "GET":
         return render(request, "add.html")

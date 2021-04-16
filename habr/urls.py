@@ -36,5 +36,6 @@ urlpatterns = [
     path("article/<int:id>/hide/", hide_article, name="article-hide"),
     path("search/", search, name="search"),
     path("top/", top, name="top"),
+    path("test/", TestView.test_1, name="test"),
 ]   + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT) \
     + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

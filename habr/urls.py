@@ -32,6 +32,7 @@ urlpatterns = [
     path("about/", about, name="about"),
     path("article/<int:pk>/edit/", edit_article, name='article-edit'),
     path("article/add/", add_article, name="article-add"),
+    path("article/form/", article_form, name="article-form"),
     path("article/<int:id>/delete/", delete_article, name="article-delete"),
     path("article/<int:id>/hide/", hide_article, name="article-hide"),
     path("search/", search, name="search"),

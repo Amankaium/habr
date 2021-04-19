@@ -2,8 +2,9 @@ from django.shortcuts import render, HttpResponse, redirect
 from django.db.models import Q
 from django.contrib.auth import authenticate, login, logout, get_user_model
 from django.contrib.auth.decorators import login_required, user_passes_test, permission_required
-from .models import Article, Author
 
+from .models import Article, Author
+from .forms import ArticleForm
 
 User = get_user_model()
 
@@ -126,6 +127,20 @@ def add_article(request):
         new_article.author = author
         new_article.save()
         return redirect(article_page, new_article.pk)
+
+
+def article_form(request):
+    context = {}
+
+    if request.method == 'POST':
+        form = ArticleForm(request.POST, request.FILES)
+        if form.is_valid():
+            article = form.save()
+            return redirect(article_page, article.id)
+
+    form = ArticleForm()
+    context['form'] = form
+    return render(request, 'form.html', context)
 
 
 def is_author(user):

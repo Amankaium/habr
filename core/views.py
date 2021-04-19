@@ -5,6 +5,7 @@ from django.contrib.auth.decorators import login_required, user_passes_test, per
 
 from .models import Article, Author
 from .forms import ArticleForm
+from .filters import ArticleFilter
 
 User = get_user_model()
 
@@ -47,11 +48,11 @@ def registration(request):
 
 
 def articles(request):
-    articles = Article.objects.filter(is_active=True)
+    article_filter = ArticleFilter(request.GET, queryset=Article.objects.filter(is_active=True))
     return render(
         request,
         "articles.html",
-        {"articles": articles}
+        {"article_filter": article_filter}
     )
 
 def authors(request):
@@ -170,7 +171,7 @@ def search(request):
         Q(title__icontains=word) | Q(text__icontains=word),
         is_active=True
     )
-    return render(request, "articles.html", {"articles": articles})
+    return render(request, "search.html", {"articles": articles})
 
 def top(request):
     articles = Article.objects.filter(is_active=True).order_by("-views", "pk")[:3]

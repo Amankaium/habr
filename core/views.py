@@ -175,7 +175,7 @@ def search(request):
 
 def top(request):
     articles = Article.objects.filter(is_active=True).order_by("-views", "pk")[:3]
-    return render(request, "articles.html", {"articles": articles})
+    return render(request, "top.html", {"articles": articles})
 
 
 class TestView:

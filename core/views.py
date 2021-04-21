@@ -2,6 +2,7 @@ from django.shortcuts import render, HttpResponse, redirect
 from django.db.models import Q
 from django.contrib.auth import authenticate, login, logout, get_user_model
 from django.contrib.auth.decorators import login_required, user_passes_test, permission_required
+from django.views.generic import TemplateView, ListView
 
 from .models import Article, Author
 from .forms import ArticleForm
@@ -178,6 +179,16 @@ def top(request):
     return render(request, "top.html", {"articles": articles})
 
 
-class TestView:
-    def test_1(self):
-        return HttpResponse('test succeed!')
+class TopView(ListView):
+    queryset = Article.objects.filter(is_active=True).order_by("-views", "pk")[:3]
+    template_name = "top.html"
+
+
+class TestView(TemplateView):
+    template_name = 'test.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['test1'] = 'bla bla test' 
+        return context
+

@@ -6,7 +6,7 @@
         <h1><a href="{% url 'article' article.id %}">{{ article.title }}</a></h1>
         <div>{{ article.text|linebreaksbr|truncatechars:50 }}</div>
         <p>Просмотры: {{ article.views }}</p>
-        <p>Автор: {{ article.author }}</p>
+        <p>Автор: {{ article.author|default_if_none:"Анонимный автор" }}</p>
         <hr>
     {% endfor %}
 {% endblock %}

@@ -2,13 +2,10 @@ from django.shortcuts import render, HttpResponse, redirect
 from django.db.models import Q
 from django.contrib.auth import authenticate, login, logout, get_user_model
 from django.contrib.auth.decorators import login_required, user_passes_test, permission_required
-from django.contrib.auth.mixins import LoginRequiredMixin
-from django.views.generic import TemplateView, ListView, DeleteView
 
-from .models import Article, Author
-from .forms import ArticleForm
-from .filters import ArticleFilter
-from .mixins import IsAuthorMixin
+from ..models import Article, Author
+from ..forms import ArticleForm
+from ..filters import ArticleFilter
 
 User = get_user_model()
 
@@ -153,14 +150,6 @@ def is_author(user):
     return Author.objects.filter(user=user).exists()
 
 
-class DeleteArticleView(LoginRequiredMixin, IsAuthorMixin, TemplateView):
-    def get(self, request, *args, **kwargs):
-        context = self.get_context_data(**kwargs)
-        article = Article.objects.get(pk=kwargs["id"])
-        article.delete()
-        return HttpResponse("Статья удалена")
-
-
 @permission_required('core.change_article')
 def hide_article(request, id):
     article = Article.objects.get(id=id)
@@ -180,18 +169,3 @@ def search(request):
 def top(request):
     articles = Article.objects.filter(is_active=True).order_by("-views", "pk")[:3]
     return render(request, "top.html", {"articles": articles})
-
-
-class TopView(LoginRequiredMixin, ListView):
-    queryset = Article.objects.filter(is_active=True).order_by("-views", "pk")[:3]
-    template_name = "top.html"
-
-
-class TestView(TemplateView):
-    template_name = 'test.html'
-
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        context['test1'] = 'bla bla test' 
-        return context
-

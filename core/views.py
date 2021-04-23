@@ -2,11 +2,13 @@ from django.shortcuts import render, HttpResponse, redirect
 from django.db.models import Q
 from django.contrib.auth import authenticate, login, logout, get_user_model
 from django.contrib.auth.decorators import login_required, user_passes_test, permission_required
-from django.views.generic import TemplateView, ListView
+from django.contrib.auth.mixins import LoginRequiredMixin
+from django.views.generic import TemplateView, ListView, DeleteView
 
 from .models import Article, Author
 from .forms import ArticleForm
 from .filters import ArticleFilter
+from .mixins import IsAuthorMixin
 
 User = get_user_model()
 
@@ -151,11 +153,12 @@ def is_author(user):
     return Author.objects.filter(user=user).exists()
 
 
-@user_passes_test(is_author)
-def delete_article(request, id):
-    article = Article.objects.get(pk=id)
-    article.delete()
-    return HttpResponse("Статья удалена")
+class DeleteArticleView(LoginRequiredMixin, IsAuthorMixin, TemplateView):
+    def get(self, request, *args, **kwargs):
+        context = self.get_context_data(**kwargs)
+        article = Article.objects.get(pk=kwargs["id"])
+        article.delete()
+        return HttpResponse("Статья удалена")
 
 
 @permission_required('core.change_article')
@@ -179,7 +182,7 @@ def top(request):
     return render(request, "top.html", {"articles": articles})
 
 
-class TopView(ListView):
+class TopView(LoginRequiredMixin, ListView):
     queryset = Article.objects.filter(is_active=True).order_by("-views", "pk")[:3]
     template_name = "top.html"
 

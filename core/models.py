@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
+from django.utils.translation import gettext_lazy as _
 
 
 class Article(models.Model):
@@ -10,16 +11,17 @@ class Article(models.Model):
         on_delete=models.SET_NULL,
         null=True, blank=True,
         related_name="article",
-        verbose_name="Автор"
+        verbose_name=_("Автор")
     )
 
     readers = models.ManyToManyField(
         to=User,
         related_name="readed_articles",
         blank=True,
+        verbose_name=_("Читатели")
     )
 
-    views = models.IntegerField(default=0, verbose_name="Просмотры")
+    views = models.IntegerField(default=0, verbose_name=_("Просмотры"))
 
     created_at = models.DateTimeField(
         auto_now_add=True,

@@ -18,9 +18,10 @@ from django.urls import path
 from core.views import *
 from django.conf import settings
 from django.conf.urls.static import static
+from django.conf.urls.i18n import i18n_patterns
 
 
-urlpatterns = [
+urlpatterns = i18n_patterns(
     path('admin/', admin.site.urls),
     path('sign-in/', sign_in, name='sign-in'),
     path('sign-out/', sign_out, name='sign-out'),
@@ -38,5 +39,5 @@ urlpatterns = [
     path("search/", search, name="search"),
     path("top/", TopView.as_view(), name="top"),
     path("test/", TestView.as_view(), name="test"),
-]   + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT) \
+)   + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT) \
     + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

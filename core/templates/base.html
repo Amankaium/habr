@@ -1,4 +1,5 @@
 {% load static %}
+{% load i18n %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -45,13 +46,13 @@
         <div class="collapse navbar-collapse" id="navb">
           <ul class="navbar-nav mr-auto">
             <li class="nav-item">
-                <a class="nav-link" href="{% url 'authors' %}">Авторы</a>
+                <a class="nav-link" href="{% url 'authors' %}">{% translate "Авторы" %}</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="{% url 'articles' %}">Статьи</a>
+                <a class="nav-link" href="{% url 'articles' %}">{% translate "Статьи" %}</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="{% url 'top' %}">Топ 3</a>
+                <a class="nav-link" href="{% url 'top' %}">{% translate "Топ 3" %}</a>
             </li>
             {% if request.user.is_authenticated %}
             <li class="nav-item">
